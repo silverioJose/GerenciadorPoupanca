@@ -1,13 +1,27 @@
 package application;
 
-import model.ContaPai;
+import model.Contas;
 import service.Servicos;
 import java.util.Scanner;
-import model.Conta0;
-import model.Conta1;
+import db.Conn; 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Main {
 	public static void main(String[] args) {
+		
+		try (Connection conn = Conn.getConnection()) {
+		    System.out.println("Conexão com SQLite estabelecida!");
+		    
+		    Statement stmt = conn.createStatement();
+		    
+		    stmt.execute("CREATE TABLE IF NOT EXISTS contas (nome TEXT, saldo REAL)");
+		    
+		} catch (SQLException e) {
+		    System.out.println("Erro ao conectar: " + e.getMessage()); 
+		}
+		
 		Scanner input = new Scanner(System.in);
 		
 		boolean running = true;
@@ -25,14 +39,14 @@ public class Main {
 				break;
 			} 
 			
-			ContaPai contaEscolhida = null;
+			Contas contaEscolhida = null;
 			String nomeConta = "";
 			
 			if (opcaoConta == 1) {
-				contaEscolhida = new Conta0("Inter", 53000.23);
+				contaEscolhida = new Contas("Inter", 53000.23);
 				nomeConta = "Inter";
 			} else if (opcaoConta == 2) {
-				contaEscolhida = new Conta0("Nubank", 192.45);
+				contaEscolhida = new Contas("Nubank", 192.45);
 				nomeConta = "Nubank";
 			}
 			
@@ -61,7 +75,7 @@ public class Main {
 					servicos.saque(valorSaque);
 	                break;
 	            case 3:
-	            	System.out.printf("Saldo: %.2ff", servicos.verSaldo());
+	            	System.out.printf("Saldo: %.2f", servicos.verSaldo());
 	            	break;
 	            case 4:
 	                operating = false;

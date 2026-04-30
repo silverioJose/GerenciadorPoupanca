@@ -1,12 +1,12 @@
 package service;
 
-import model.ContaPai;
+import model.Contas;
 
 public class Servicos{
 	
-	private ContaPai conta;
+	private Contas conta;
 	
-	public Servicos(ContaPai conta) {
+	public Servicos(Contas conta) {
 		this.conta = conta;
 	}
 	

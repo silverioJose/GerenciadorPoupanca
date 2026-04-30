@@ -1,10 +1,11 @@
 package model;
 
-public class ContaPai{
+public class Contas{
+	private int id;
 	private String nome;
 	private double saldo;
 	
-	public ContaPai(String nome, double saldo) {
+	public Contas(String nome, double saldo) {
 		this.nome = nome;
 		this.saldo = saldo;
 	}
