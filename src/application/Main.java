@@ -25,7 +25,7 @@ public class Main {
 		    
 		    //criação(se não existente) da tabela contas
 		    Statement stmt = conn.createStatement();
-		    stmt.execute("CREATE TABLE IF NOT EXISTS contas (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, saldo REAL)");
+		    stmt.execute("CREATE TABLE IF NOT EXISTS contas (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, saldo REAL, meta REAL)");
 		    
 		    //verificaçao se tabela contas esta vazia
 		    Statement stmt0 = conn.createStatement();
@@ -56,12 +56,13 @@ public class Main {
 		
 		//se tabela contas vazia, da opção de criação
 		if (isEmpty) {
-			System.out.println("Digite o nome da conta: ");
+			System.out.println("Digite o nome do cofre: ");
 			String nome = input.nextLine();
-			System.out.println("Digite o saldo inicial: ");
-			double saldo = input.nextDouble();
+			System.out.println("Digite a quantia alvo: ");
+			double meta = input.nextDouble();
+			double saldo = 0;
 			
-			Contas novaConta = new Contas(nome, saldo);
+			Contas novaConta = new Contas(nome, saldo, meta);
 			
 			ContaDAO dao = new ContaDAO();
 			dao.insertConta(novaConta);
@@ -78,6 +79,7 @@ public class Main {
 			    while (rs1.next()) {
 			        System.out.println(rs1.getString("nome"));
 			        System.out.println(rs1.getDouble("saldo"));
+			        System.out.println(rs1.getDouble("meta"));
 			        System.out.println("");
 			    }
 
@@ -124,7 +126,8 @@ public class Main {
 				System.out.println("\n1- Deposito");
 				System.out.println("2- Saque");
 				System.out.println("3- Saldo");
-				System.out.println("4- Voltar");
+				System.out.println("4- Percentual");
+				System.out.println("5- Voltar");
 				
 				int opcaoOp = input.nextInt();
 				
@@ -146,6 +149,9 @@ public class Main {
 	            	System.out.printf("Saldo: %.2f", servicos.verSaldo());
 	            	break;
 	            case 4:
+	            	System.out.printf("Percentual: %.2f%%", servicos.verPercentual());
+	            	break;
+	            case 5:
 	                operating = false;
 	                break;
 				}

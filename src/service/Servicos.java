@@ -14,6 +14,12 @@ public class Servicos{
 		double saldo = conta.getSaldo();
 		return saldo;
 	}
+	public double verPercentual() {
+		double saldo = conta.getSaldo();
+		double meta = conta.getMeta();
+		double percentual = ((saldo/meta)*100);
+		return percentual;
+	}
 	
 	public void deposito(double valor) {
 		conta.setSaldo(conta.getSaldo()+valor);
