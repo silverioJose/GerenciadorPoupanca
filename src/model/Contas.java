@@ -9,6 +9,11 @@ public class Contas{
 		this.nome = nome;
 		this.saldo = saldo;
 	}
+	public Contas(int id, String nome, double saldo) {
+		this.id = id;
+		this.nome = nome;
+		this.saldo = saldo;
+	}
 	public double getSaldo() {
 		return saldo;
 	}
@@ -17,5 +22,8 @@ public class Contas{
 	}
 	public String getNome() {
 		return nome;
+	}
+	public int getId() {
+		return id;
 	}
 }
