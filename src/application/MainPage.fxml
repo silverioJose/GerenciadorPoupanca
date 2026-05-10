@@ -1,38 +1,203 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainPageController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainPageController">
    <children>
-      <VBox layoutX="30.0" layoutY="105.0" prefHeight="326.0" prefWidth="340.0" spacing="10.0" style="-fx-background-color: #7B0000; -fx-background-radius: 10;">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0" style="-fx-background-color: beige;">
          <children>
-            <Label fx:id="labelName" style="-fx-text-fill: beige;" text="Nome Cofre">
+            <VBox layoutX="30.0" layoutY="105.0" prefHeight="326.0" prefWidth="340.0" spacing="10.0" style="-fx-background-color: #7B0000; -fx-background-radius: 10;">
+               <children>
+                  <HBox maxWidth="Infinity" prefHeight="43.0" prefWidth="300.0">
+                     <children>
+                        <Label fx:id="labelName" maxWidth="Infinity" style="-fx-text-fill: beige;" text="Nome Cofre" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="checkVisao" mnemonicParsing="false" onAction="#visao" prefHeight="35.0" prefWidth="33.0" style="-fx-text-fill: beige;" styleClass="checkVisao" text="👁">
+                           <font>
+                              <Font size="27.0" />
+                           </font></CheckBox>
+                        <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" text="🗑">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" visible="false" />
+                  <HBox maxWidth="Infinity" prefHeight="43.0" prefWidth="300.0">
+                     <children>
+                        <Label fx:id="labelOculto" maxWidth="Infinity" style="-fx-text-fill: beige;" text="R$ •••••" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelSaldo" maxWidth="Infinity" style="-fx-text-fill: beige;" text="Saldo" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelPercentual" alignment="CENTER_RIGHT" style="-fx-text-fill: beige;" text="Porcentagem">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <Label fx:id="labelDescName" maxWidth="Infinity" style="-fx-text-fill: beige;" text="Descrição">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                  <Separator prefWidth="200.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="labelDesc" maxWidth="Infinity" style="-fx-text-fill: beige;" text="Último mês" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelOcultoMes" maxWidth="Infinity" style="-fx-text-fill: beige;" text="R$ •••••">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelMes" maxWidth="Infinity" style="-fx-text-fill: beige;" text="R$ XX,XX">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+            <Button fx:id="btnDeposito" layoutX="30.0" layoutY="450.0" mnemonicParsing="false" onAction="#deposito" prefHeight="25.0" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige; -fx-background-radius: 10;" text="Deposito">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="btnSaque" layoutX="29.0" layoutY="502.0" mnemonicParsing="false" onAction="#saque" prefHeight="25.0" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige; -fx-background-radius: 10;" text="Saque">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="btnTransacoes" layoutX="30.0" layoutY="554.0" mnemonicParsing="false" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige; -fx-background-radius: 10;" text="Últimas Transações">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="btnSair" layoutX="29.0" layoutY="606.0" mnemonicParsing="false" onAction="#sair" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige; -fx-background-radius: 10;" text="Sair">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-6.0" layoutY="-2.0" prefHeight="64.0" prefWidth="410.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige; -fx-background-radius: 0;" text="Nome" textAlignment="JUSTIFY">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="labelSaldo" style="-fx-text-fill: beige;" text="Saldo" />
-            <Label fx:id="labelPercentual" style="-fx-text-fill: beige;" text="Porcentagem" />
+            <Button fx:id="btnProx" layoutX="375.0" layoutY="118.0" mnemonicParsing="false" onAction="#proximaConta" prefHeight="300.0" prefWidth="50.0" style="-fx-background-color: #7B0000; -fx-background-radius: 10;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btnAnt" layoutX="-25.0" layoutY="118.0" mnemonicParsing="false" onAction="#contaAnterior" prefHeight="300.0" prefWidth="50.0" style="-fx-background-color: #7B0000; -fx-background-radius: 10;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btnCriar" layoutX="329.0" layoutY="7.0" mnemonicParsing="false" onAction="#abrirCriar" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" text="+">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="22.0" />
+               </font></Button>
+            <Button fx:id="btnConfig" layoutX="30.0" layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" text="o">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="22.0" />
+               </font></Button>
          </children>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-      </VBox>
-      <Button fx:id="btnDeposito" layoutX="30.0" layoutY="474.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" text="Deposito" />
-      <Button fx:id="btnSaque" layoutX="30.0" layoutY="515.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" text="Saque" />
-      <Button fx:id="btnTransacoes" layoutX="30.0" layoutY="557.0" mnemonicParsing="false" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" text="Últimas Transações" />
-      <Button fx:id="btnSair" layoutX="30.0" layoutY="599.0" mnemonicParsing="false" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" text="Sair" />
-      <Button fx:id="btnConfig" layoutX="30.0" layoutY="29.0" mnemonicParsing="false" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" text="o" />
-      <Button fx:id="btnCriar" layoutX="345.0" layoutY="29.0" mnemonicParsing="false" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" text="+" />
-      <Label contentDisplay="CENTER" layoutX="171.0" layoutY="27.0" prefHeight="30.0" prefWidth="59.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige; -fx-background-radius: 10;" text="Nome" textAlignment="JUSTIFY">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
+      </AnchorPane>
+      <AnchorPane fx:id="paneCriar" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0,0,0,0.5);;" visible="false">
+         <children>
+            <VBox layoutX="85.0" layoutY="250.0" prefHeight="164.0" prefWidth="230.0" spacing="10.0" style="-fx-background-color: #7B0000; -fx-background-radius: 10;">
+               <children>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="195.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" text="Criação de cofre" />
+                  <TextField fx:id="fieldName" promptText="Nome" />
+                  <TextField fx:id="fieldMeta" promptText="Meta" />
+                  <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmar" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Confirmar" />
+                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Cancelar" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneValor" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0,0,0,0.5);;" visible="false">
+         <children>
+            <VBox layoutX="85.0" layoutY="250.0" prefHeight="128.0" prefWidth="230.0" spacing="10.0" style="-fx-background-color: #7B0000; -fx-background-radius: 10;">
+               <children>
+                  <TextField fx:id="fieldValor" promptText="Valor" />
+                  <Button fx:id="btnConfirmarValor" mnemonicParsing="false" onAction="#confirmarOperacao" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Confirmar" />
+                  <Button fx:id="btnCancelarValor" mnemonicParsing="false" onAction="#cancelarOperacao" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Cancelar" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneExclusao" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <children>
+            <VBox layoutX="85.0" layoutY="283.0" prefHeight="128.0" prefWidth="230.0" spacing="10.0" style="-fx-background-color: #7B0000; -fx-background-radius: 10;">
+               <children>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="203.0" style="-fx-text-fill: beige;" text="Excluir cofre?">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="15.0" prefWidth="196.0" style="-fx-text-fill: beige;" text="Essa ação não podera ser desfeita" />
+                  <Button fx:id="btnConfirmarDelete" mnemonicParsing="false" onAction="#confirmarDeletar" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Confirmar" />
+                  <Button fx:id="btnCancelarDelete" mnemonicParsing="false" onAction="#cancelarDeletar" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Cancelar" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

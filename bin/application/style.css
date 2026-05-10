@@ -1,0 +1,23 @@
+.checkVisao .box {
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+}
+
+.checkVisao {
+    -fx-font-size: 18px;
+    -fx-cursor: hand;
+}
+
+.checkVisao .mark {
+    -fx-background-color: transparent;
+}
+
+.checkVisao {
+    -fx-opacity: 0.4;
+}
+
+.checkVisao:selected {
+    -fx-opacity: 1;
+}
