@@ -48,12 +48,19 @@ public class MainPageController {
     @FXML
     public void initialize() {
         listaContas = dao.listAll();
-        conta = listaContas.get(indiceAtual);
-        servicos = new Servicos(conta);
-        atualizarTela();
         
+        
+        if (!listaContas.isEmpty()) {
+            conta = listaContas.get(indiceAtual);
+            servicos = new Servicos(conta);
+            atualizarTela();
+        } else {
+        	paneCriar.setVisible(true);
+        }
         labelSaldo.setVisible(false);
         checkVisao.setSelected(false);
+        
+        
     }
 
     // atualiza os labels com os dados da conta atual
@@ -89,7 +96,7 @@ public class MainPageController {
     @FXML
     public void confirmar() {
         String nome = fieldName.getText();
-        double meta = Double.parseDouble(fieldMeta.getText());
+        double meta = Double.parseDouble(fieldMeta.getText().replace("," , "."));
 
         Contas novaConta = new Contas(nome, 0, meta);
         dao.insertConta(novaConta);

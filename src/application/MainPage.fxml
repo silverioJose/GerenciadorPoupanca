@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -27,11 +28,15 @@
                               <Font size="26.0" />
                            </font>
                         </Label>
-                        <CheckBox fx:id="checkVisao" mnemonicParsing="false" onAction="#visao" prefHeight="35.0" prefWidth="33.0" style="-fx-text-fill: beige;" styleClass="checkVisao" text="👁">
+                        <CheckBox fx:id="checkVisao" mnemonicParsing="false" onAction="#visao" prefHeight="35.0" prefWidth="33.0" style="-fx-text-fill: beige;" text="👁">
                            <font>
                               <Font size="27.0" />
-                           </font></CheckBox>
-                        <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" text="🗑">
+                           </font>
+                           <styleClass>
+                              <String fx:value="checkVisao" />
+                              <String fx:value="botao" />
+                           </styleClass></CheckBox>
+                        <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" styleClass="botao" text="🗑">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -93,28 +98,28 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </VBox>
-            <Button fx:id="btnDeposito" layoutX="30.0" layoutY="450.0" mnemonicParsing="false" onAction="#deposito" prefHeight="25.0" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige; -fx-background-radius: 10;" text="Deposito">
+            <Button fx:id="btnDeposito" layoutX="30.0" layoutY="450.0" mnemonicParsing="false" onAction="#deposito" prefHeight="25.0" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige; -fx-background-radius: 10;" styleClass="botao" text="Deposito">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <Button fx:id="btnSaque" layoutX="29.0" layoutY="502.0" mnemonicParsing="false" onAction="#saque" prefHeight="25.0" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige; -fx-background-radius: 10;" text="Saque">
+            <Button fx:id="btnSaque" layoutX="29.0" layoutY="502.0" mnemonicParsing="false" onAction="#saque" prefHeight="25.0" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige; -fx-background-radius: 10;" styleClass="botao" text="Saque">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <Button fx:id="btnTransacoes" layoutX="30.0" layoutY="554.0" mnemonicParsing="false" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige; -fx-background-radius: 10;" text="Últimas Transações">
+            <Button fx:id="btnTransacoes" layoutX="30.0" layoutY="554.0" mnemonicParsing="false" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige; -fx-background-radius: 10;" styleClass="botao" text="Últimas Transações">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <Button fx:id="btnSair" layoutX="29.0" layoutY="606.0" mnemonicParsing="false" onAction="#sair" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige; -fx-background-radius: 10;" text="Sair">
+            <Button fx:id="btnSair" layoutX="29.0" layoutY="606.0" mnemonicParsing="false" onAction="#sair" prefWidth="340.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige; -fx-background-radius: 10;" styleClass="botao" text="Sair">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -134,14 +139,14 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="btnCriar" layoutX="329.0" layoutY="7.0" mnemonicParsing="false" onAction="#abrirCriar" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" text="+">
+            <Button fx:id="btnCriar" layoutX="329.0" layoutY="7.0" mnemonicParsing="false" onAction="#abrirCriar" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" styleClass="botao" text="+">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
                   <Font size="22.0" />
                </font></Button>
-            <Button fx:id="btnConfig" layoutX="30.0" layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" text="o">
+            <Button fx:id="btnConfig" layoutX="30.0" layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" styleClass="botao" text="o">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
