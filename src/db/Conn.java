@@ -27,5 +27,17 @@ public class Conn {
             );
         """;
         conn.createStatement().execute(sql);
+        
+        String sql2 = """
+        	    CREATE TABLE IF NOT EXISTS transacoes (
+        	        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        	        conta_id INTEGER NOT NULL,
+        	        tipo TEXT NOT NULL,
+        	        valor REAL NOT NULL,
+        	        data TEXT NOT NULL,
+        	        FOREIGN KEY (conta_id) REFERENCES contas(id)
+        	    );
+        	""";
+        conn.createStatement().execute(sql2);
     }
 }

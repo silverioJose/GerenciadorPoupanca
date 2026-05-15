@@ -7,6 +7,7 @@ import javafx.scene.control.CheckBox;
 import model.Contas;
 import service.Servicos;
 import dao.ContaDAO;
+import dao.TransacaoDAO;
 import java.util.ArrayList;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
@@ -43,6 +44,7 @@ public class MainPageController {
     private Servicos servicos;
     private ContaDAO dao = new ContaDAO();
     private String operacaoAtual;
+    private TransacaoDAO transacaoDAO = new TransacaoDAO();
 
     // esse metodo roda automatico quando a tela abre
     @FXML
@@ -59,6 +61,7 @@ public class MainPageController {
         }
         labelSaldo.setVisible(false);
         checkVisao.setSelected(false);
+        labelMes.setVisible(false);
         
         
     }
@@ -70,6 +73,7 @@ public class MainPageController {
         labelName.setText(conta.getNome());
         labelSaldo.setText("R$ " + String.format("%.2f", conta.getSaldo()));
         labelPercentual.setText(String.format("%.0f%%", servicos.verPercentual()));
+        labelMes.setVisible(false);
     }
 
     //direita
@@ -135,18 +139,29 @@ public class MainPageController {
     @FXML
     public void confirmarOperacao() {
         double valor = Double.parseDouble(fieldValor.getText());
+        boolean sucesso = true;
         
         if (operacaoAtual.equals("deposito")) {
             servicos.deposito(valor);
+            transacaoDAO.inserir(conta.getId(), "deposito", valor);
         } else {
-            servicos.saque(valor);
+            sucesso = servicos.saque(valor);
+            
+            if(sucesso) {
+            	transacaoDAO.inserir(conta.getId(), "deposito", valor);
+            } else { 
+            	System.out.println("Saldo insuficiente para o saque!");
+            }
         }
         
-        dao.updateSaldo(conta);
-        atualizarTela();
-        paneValor.setVisible(false);
-        fieldValor.clear();
+        if(sucesso) {
+	        dao.updateSaldo(conta);
+	        atualizarTela();
+	        paneValor.setVisible(false);
+	        fieldValor.clear();
+        }
     }
+        
 
     @FXML
     public void cancelarOperacao() {

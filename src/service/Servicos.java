@@ -25,7 +25,13 @@ public class Servicos{
 		conta.setSaldo(conta.getSaldo()+valor);
 	}
 	
-	public void saque(double valor ) {
-		conta.setSaldo(conta.getSaldo()-valor);
+	public boolean saque(double valor ) {
+		if (conta.getSaldo()>=valor) {
+			conta.setSaldo(conta.getSaldo()-valor);
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 }
