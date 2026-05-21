@@ -15,7 +15,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Cofre");
+        primaryStage.setTitle("GdP");
         primaryStage.show();
     }
 

@@ -12,6 +12,7 @@ public class Conn {
             e.printStackTrace();
         }
         new File("db").mkdirs();
+        System.out.println("Banco em: " + new File("db/base.db").getAbsolutePath());
         Connection conn = DriverManager.getConnection("jdbc:sqlite:db/base.db");
         criarTabelas(conn);
         return conn;
@@ -23,7 +24,8 @@ public class Conn {
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nome TEXT NOT NULL,
                 saldo REAL NOT NULL DEFAULT 0.0,
-                meta REAL NOT NULL
+                meta REAL NOT NULL,
+                criacao TEXT NOT NULL
             );
         """;
         conn.createStatement().execute(sql);
@@ -31,13 +33,21 @@ public class Conn {
         String sql2 = """
         	    CREATE TABLE IF NOT EXISTS transacoes (
         	        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        	        conta_id INTEGER NOT NULL,
+        	        contaId INTEGER NOT NULL,
         	        tipo TEXT NOT NULL,
         	        valor REAL NOT NULL,
         	        data TEXT NOT NULL,
-        	        FOREIGN KEY (conta_id) REFERENCES contas(id)
+        	        FOREIGN KEY (contaId) REFERENCES contas(id)
         	    );
         	""";
         conn.createStatement().execute(sql2);
+        
+        try {
+            conn.createStatement().execute(
+                "ALTER TABLE transacoes ADD COLUMN data TEXT DEFAULT ''"
+            );
+        } catch (SQLException e) {
+            // coluna já existe, ignora
+        }
     }
 }

@@ -26,3 +26,33 @@
 	-fx-scale-x: 1.5;
 	-fx-scale-y: 1.5;
 }
+
+.tableHist .column-header-background {
+    -fx-background-color: #7B0000;
+	-fx-background-radius: 10 10 0 0;
+}
+
+.tableHist .column-header, .tableHist .filler {
+    -fx-background-color: transparent;
+    -fx-size: 35;
+}
+
+.tableHist .column-header .label {
+    -fx-text-fill: #F5F5DC;
+    -fx-font-weight: bold;
+}
+
+.tableHist .table-row-cell:even {
+    -fx-background-color: #F5F5DC;
+}
+
+.tableHist .table-row-cell:odd {
+    -fx-background-color: #f5f5e1;
+}
+.tableHist .table-row-cell:selected {
+    -fx-background-color: #a00000;
+}
+
+.tableHist .table-row-cell:selected .text {
+    -fx-fill: white;
+}

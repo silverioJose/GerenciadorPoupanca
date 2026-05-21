@@ -4,6 +4,8 @@ import db.Conn;
 import model.Contas;
 import java.sql.*;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ContaDAO {
 	
@@ -13,7 +15,7 @@ public class ContaDAO {
 			    try (Connection conn = Conn.getConnection();
 			         Statement select = conn.createStatement()) {
 			        
-				    ResultSet rs1 = select.executeQuery("SELECT id, nome, saldo, meta FROM contas");
+				    ResultSet rs1 = select.executeQuery("SELECT id, nome, saldo, meta, criacao FROM contas");
 	
 				    while (rs1.next()) {
 				    	int id = rs1.getInt("id");
@@ -21,7 +23,9 @@ public class ContaDAO {
 				    	double saldo = rs1.getDouble("saldo");
 				    	double meta = rs1.getDouble("meta");
 				    	
-				        list.add(new Contas(id, nome, saldo, meta));
+				    	String data = rs1.getString("criacao");
+				    	
+				        list.add(new Contas(id, nome, saldo, meta, data));
 				    }
 	
 			    } catch (SQLException e) {
@@ -32,13 +36,18 @@ public class ContaDAO {
 	}	
 	
 	public void insertConta(Contas conta) {
-		String sql = "INSERT INTO contas (nome, meta) VALUES (?, ?)";
+		
+		String data = LocalDateTime.now()
+				.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+		
+		String sql = "INSERT INTO contas (nome, meta, criacao) VALUES (?, ?, ?)";
 		
 		try (Connection conn = Conn.getConnection();
 	            PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
 	            pstmt.setString(1, conta.getNome());
 	            pstmt.setDouble(2, conta.getMeta());
+	            pstmt.setString(3, data);
 	            pstmt.executeUpdate();
 	            System.out.println("Cofre inserido com sucesso!");
 		} catch (SQLException e) {
