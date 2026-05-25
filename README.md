@@ -1,4 +1,4 @@
-# Gerenciador de Poupança
+# Gerenciador de Poupanças 💰
 
 Aplicação desktop desenvolvida em JAVA com JavaFX para gerenciamento de cofres de poupança.
 
