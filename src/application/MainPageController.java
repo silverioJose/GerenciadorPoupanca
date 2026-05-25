@@ -73,12 +73,21 @@ public class MainPageController {
             conta = listaContas.get(indiceAtual);
             servicos = new Servicos(conta);
             atualizarTela();
+            
+            boolean multiplas = listaContas.size() >= 2;
+            btnProx.setVisible(multiplas);
+            btnProx.setManaged(multiplas);
+            btnAnt.setVisible(multiplas);
+            btnAnt.setManaged(multiplas);
+            
         } else {
         	paneCriar.setVisible(true);
         }
         labelSaldo.setVisible(false);
+        labelSaldo.setManaged(false);
         checkVisao.setSelected(false);
         labelMes.setVisible(false);
+        labelMes.setManaged(false);
         
         collumData.setCellValueFactory(new PropertyValueFactory<>("data"));
         
@@ -151,12 +160,15 @@ public class MainPageController {
 
         listaContas = dao.listAll();
         indiceAtual = listaContas.size() - 1;
-        atualizarTela();
         
-        if (listaContas.size() >= 2) {
-            btnProx.setVisible(true);
-            btnAnt.setVisible(true);
-        }
+        boolean multiplas = listaContas.size() >= 2;
+
+        btnProx.setVisible(multiplas);
+        btnProx.setManaged(multiplas);
+        btnAnt.setVisible(multiplas);
+        btnAnt.setManaged(multiplas);
+        
+        atualizarTela();
 
         paneCriar.setVisible(false);
         fieldName.clear();
@@ -263,15 +275,24 @@ public class MainPageController {
     @FXML
     private void confirmarDeletar() {
     	dao.deletar(conta.getId());
-    	
     	listaContas.remove(indiceAtual);
+    	paneExclusao.setVisible(false);
         
+    	if (listaContas.isEmpty()) {
+            paneCriar.setVisible(true);
+            btnProx.setVisible(false);
+            btnProx.setManaged(false);
+            btnAnt.setVisible(false);
+            btnAnt.setManaged(false);
+            return;
+        }
+    	
     	if (indiceAtual >= listaContas.size()) {
             indiceAtual = listaContas.size() - 1;
         }
     	
         atualizarTela();
-        paneExclusao.setVisible(false);
+//        paneExclusao.setVisible(false);
     }
 
     @FXML

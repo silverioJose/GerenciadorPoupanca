@@ -54,7 +54,7 @@ public class TransacaoDAO {
 	}
 	
 	public double saldoMes(int contaId) {
-		String sql = "SELECT tipo, valor FROM transacoes WHERE contaId = ?";
+		String sql = "SELECT tipo, valor, data FROM transacoes WHERE contaId = ?";
 		double total = 0;
 		
 		String mesAtual = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/yyyy"));
