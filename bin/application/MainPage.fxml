@@ -164,8 +164,14 @@
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="195.0" style="-fx-background-color: #7B0000; -fx-text-fill: beige;" text="Criação de cofre" />
                   <TextField fx:id="fieldName" promptText="Nome" />
                   <TextField fx:id="fieldMeta" promptText="Meta" />
-                  <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmar" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Confirmar" />
-                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Cancelar" />
+                  <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmar" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Confirmar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Cancelar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -178,8 +184,14 @@
             <VBox layoutX="85.0" layoutY="250.0" prefHeight="128.0" prefWidth="230.0" spacing="10.0" style="-fx-background-color: #7B0000; -fx-background-radius: 10;">
                <children>
                   <TextField fx:id="fieldValor" promptText="Informe o valor da operação" />
-                  <Button fx:id="btnConfirmarValor" mnemonicParsing="false" onAction="#confirmarOperacao" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Confirmar" />
-                  <Button fx:id="btnCancelarValor" mnemonicParsing="false" onAction="#cancelarOperacao" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Cancelar" />
+                  <Button fx:id="btnConfirmarValor" mnemonicParsing="false" onAction="#confirmarOperacao" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Confirmar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="btnCancelarValor" mnemonicParsing="false" onAction="#cancelarOperacao" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Cancelar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -197,8 +209,14 @@
                      </font>
                   </Label>
                   <Label alignment="CENTER" prefHeight="15.0" prefWidth="196.0" style="-fx-text-fill: beige;" text="Essa ação não podera ser desfeita" />
-                  <Button fx:id="btnConfirmarDelete" mnemonicParsing="false" onAction="#confirmarDeletar" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Confirmar" />
-                  <Button fx:id="btnCancelarDelete" mnemonicParsing="false" onAction="#cancelarDeletar" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Cancelar" />
+                  <Button fx:id="btnConfirmarDelete" mnemonicParsing="false" onAction="#confirmarDeletar" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Confirmar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="btnCancelarDelete" mnemonicParsing="false" onAction="#cancelarDeletar" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: beige; -fx-text-fill: #7B0000;" text="Cancelar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

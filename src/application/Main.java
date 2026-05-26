@@ -17,6 +17,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("GdP");
         primaryStage.show();
+        primaryStage.setResizable(false);
     }
 
     public static void main(String[] args) {

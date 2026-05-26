@@ -1,0 +1,13 @@
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Compiled files
+bin/
+
+# Logs
+*.log
+
+# Environment variables
+.env
