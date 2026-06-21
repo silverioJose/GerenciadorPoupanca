@@ -46,6 +46,7 @@ public class MainPageController {
     @FXML private AnchorPane paneValor;
     @FXML private AnchorPane paneExclusao;
     @FXML private AnchorPane paneHistorico;
+    @FXML private AnchorPane paneExclusaoTodos;
     @FXML private TextField fieldName;
     @FXML private TextField fieldMeta;
     @FXML private TextField fieldValor;
@@ -54,6 +55,12 @@ public class MainPageController {
     @FXML private TableColumn<Transacao, String> collumData;
     @FXML private TableColumn<Transacao, String> collumTipo;
     @FXML private TableColumn<Transacao, Double> collumValor;
+    @FXML private javafx.scene.layout.VBox vboxCriar;
+    @FXML private javafx.scene.layout.VBox vboxValor;
+    @FXML private javafx.scene.layout.VBox vboxExclusao;
+    @FXML private javafx.scene.layout.VBox vboxExclusaoTodos;
+    @FXML private javafx.scene.layout.VBox vboxHistorico;
+    @FXML private javafx.scene.layout.VBox vboxCard;
 
     private ArrayList<Contas> listaContas;
     private int indiceAtual = 0;
@@ -81,7 +88,7 @@ public class MainPageController {
             btnAnt.setManaged(multiplas);
             
         } else {
-        	paneCriar.setVisible(true);
+        	Platform.runLater(() -> Animacao.abrirPopup(paneCriar, vboxCriar));
         }
         labelSaldo.setVisible(false);
         labelSaldo.setManaged(false);
@@ -129,22 +136,28 @@ public class MainPageController {
     //direita
     @FXML
     public void proximaConta() {
-        indiceAtual++;
-        if (indiceAtual >= listaContas.size()) indiceAtual = 0;
-        atualizarTela();
+    	Animacao.slide(vboxCard, true, () -> {
+    		indiceAtual++;
+        	if (indiceAtual >= listaContas.size()) indiceAtual = 0;
+        	atualizarTela();
+    	});
+        
     }
 
     //esquerda
     @FXML
     public void contaAnterior() {
-        indiceAtual--;
-        if (indiceAtual < 0) indiceAtual = listaContas.size() - 1;
-        atualizarTela();
+    	Animacao.slide(vboxCard, false, () -> {
+    		indiceAtual--;
+    		if (indiceAtual < 0) indiceAtual = listaContas.size() - 1;
+    		atualizarTela();
+    	});
+        
     }
     //criar conta
     @FXML
     public void abrirCriar() {
-        paneCriar.setVisible(true);
+    	Animacao.abrirPopup(paneCriar, vboxCriar);
     }
     
     @FXML
@@ -170,26 +183,26 @@ public class MainPageController {
         
         atualizarTela();
 
-        paneCriar.setVisible(false);
+        Animacao.fecharPopup(paneCriar);
         fieldName.clear();
         fieldMeta.clear();
     }
     
     @FXML
     public void cancelar() {
-        paneCriar.setVisible(false);
+        Animacao.fecharPopup(paneCriar);
         fieldName.clear();
         fieldMeta.clear();
     }
     @FXML
     public void deposito() {
     	operacaoAtual = "deposito";
-        paneValor.setVisible(true);
+        Animacao.abrirPopup(paneValor, vboxValor);
     }
     @FXML
     public void saque() {
     	operacaoAtual = "saque";
-    	paneValor.setVisible(true);
+    	Animacao.abrirPopup(paneValor, vboxValor);
     }
     
     @FXML
@@ -213,7 +226,7 @@ public class MainPageController {
         if(sucesso) {
 	        dao.updateSaldo(conta);
 	        atualizarTela();
-	        paneValor.setVisible(false);
+	        Animacao.fecharPopup(paneValor);
 	        fieldValor.clear();
         }
     }
@@ -221,7 +234,7 @@ public class MainPageController {
 
     @FXML
     public void cancelarOperacao() {
-        paneValor.setVisible(false);
+    	Animacao.fecharPopup(paneValor);
         fieldValor.clear();
     }
     
@@ -232,7 +245,7 @@ public class MainPageController {
     
     @FXML
     public void carregarHistorico() {
-    	paneHistorico.setVisible(true);
+    	Animacao.abrirPopup(paneHistorico, vboxHistorico);
     	ArrayList<Transacao> historico = transacaoDAO.listarPorConta(conta.getId());
     	
     	if (tableHistorico.getColumns().isEmpty()) {
@@ -248,7 +261,7 @@ public class MainPageController {
     
     @FXML
     public void fecharHistorico() {
-    	paneHistorico.setVisible(false);
+    	Animacao.fecharPopup(paneHistorico);
     }
     
     @FXML
@@ -269,21 +282,26 @@ public class MainPageController {
     
     @FXML
     public void delete() {
-    	paneExclusao.setVisible(true);
+    	Animacao.abrirPopup(paneExclusao, vboxExclusao);
     }
     
     @FXML
     private void confirmarDeletar() {
     	dao.deletar(conta.getId());
     	listaContas.remove(indiceAtual);
-    	paneExclusao.setVisible(false);
+    	Animacao.fecharPopup(paneExclusao);
         
     	if (listaContas.isEmpty()) {
-            paneCriar.setVisible(true);
             btnProx.setVisible(false);
             btnProx.setManaged(false);
             btnAnt.setVisible(false);
             btnAnt.setManaged(false);
+            
+            javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(
+            		javafx.util.Duration.millis(150)
+            		);
+            pause.setOnFinished(e -> Animacao.abrirPopup(paneCriar, vboxCriar));
+            pause.play();
             return;
         }
     	
@@ -291,12 +309,50 @@ public class MainPageController {
             indiceAtual = listaContas.size() - 1;
         }
     	
+    	boolean multiplas = listaContas.size() >= 2;
+    	btnProx.setVisible(multiplas);
+        btnProx.setManaged(multiplas);
+        btnAnt.setVisible(multiplas);
+        btnAnt.setManaged(multiplas);
+    	
         atualizarTela();
-//        paneExclusao.setVisible(false);
     }
 
     @FXML
     private void cancelarDeletar() {
-        paneExclusao.setVisible(false);
+    	Animacao.fecharPopup(paneExclusao);
+    }
+    
+    @FXML
+    private void deletarTodos() {
+    	Animacao.abrirPopup(paneExclusaoTodos, vboxExclusaoTodos);
+    }
+    
+    @FXML
+    private void comfirmarDeletarTodos() {
+    	dao.deletarTudo();
+    	listaContas.clear();
+        indiceAtual = 0;
+        
+        Animacao.fecharPopup(paneExclusaoTodos);
+        Animacao.fecharPopup(paneExclusao);
+        Animacao.fecharPopup(paneValor);
+        Animacao.fecharPopup(paneHistorico);
+    	
+        btnProx.setVisible(false);
+        btnProx.setManaged(false);
+        btnAnt.setVisible(false);
+        btnAnt.setManaged(false);
+      
+        javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(
+        	javafx.util.Duration.millis(150)
+        );
+        pause.setOnFinished(e -> Animacao.abrirPopup(paneCriar, vboxCriar));
+        pause.play();
+    }
+    
+    @FXML
+    private void cancelarDeletarTodos() {
+    	Animacao.fecharPopup(paneExclusaoTodos);
     }
 }

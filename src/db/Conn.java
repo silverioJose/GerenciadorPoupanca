@@ -12,7 +12,9 @@ public class Conn {
             e.printStackTrace();
         }
         new File("db").mkdirs();
+        
         System.out.println("Banco em: " + new File("db/base.db").getAbsolutePath());
+        
         Connection conn = DriverManager.getConnection("jdbc:sqlite:db/base.db");
         criarTabelas(conn);
         return conn;

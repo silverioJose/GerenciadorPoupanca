@@ -83,4 +83,18 @@ public class ContaDAO {
 	        e.printStackTrace();
 	    }
 	}
+	
+	public void deletarTudo() {
+		String sql = "DELETE FROM contas";
+		
+		try (Connection conn = Conn.getConnection();
+			Statement stmt = conn.createStatement()) {
+			
+				stmt.executeUpdate(sql);
+				
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+	}
 }
