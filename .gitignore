@@ -5,9 +5,19 @@
 
 # Compiled files
 bin/
+out/
 
 # Logs
 *.log
 
 # Environment variables
 .env
+
+# Build
+build/
+
+# Arquivos gerados
+GerenciadorPoupanca.jar
+META-INF/
+org/
+sqlite-jdbc.properties

@@ -1,12 +1,11 @@
 package dao;
-
 import db.Conn;
 import model.Transacao;
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
 public class TransacaoDAO {
 	
 	public void inserir(int contaId, String tipo, double valor) {
@@ -23,7 +22,7 @@ public class TransacaoDAO {
             pstmt.setDouble(3, valor);
             pstmt.setString(4, data);
             pstmt.executeUpdate();
-		} catch (SQLException e) {
+		} catch (SQLException | URISyntaxException e) {
 			e.printStackTrace();
 		}
 	}
@@ -47,7 +46,7 @@ public class TransacaoDAO {
 						);
 				lista.add(t);
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | URISyntaxException e) {
 			e.printStackTrace();
 		}
 		return lista;
@@ -79,7 +78,7 @@ public class TransacaoDAO {
 				}
 			}
 			
-		} catch (SQLException e) {
+		} catch (SQLException | URISyntaxException e) {
 	        e.printStackTrace();
 		}
 	return total;

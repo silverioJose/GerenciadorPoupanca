@@ -1,12 +1,11 @@
 package dao;
-
 import db.Conn;
 import model.Contas;
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 public class ContaDAO {
 	
 	public ArrayList<Contas> listAll() {
@@ -28,7 +27,7 @@ public class ContaDAO {
 				        list.add(new Contas(id, nome, saldo, meta, data));
 				    }
 	
-			    } catch (SQLException e) {
+			    } catch (SQLException | URISyntaxException e) {
 			        e.printStackTrace();
 			    }
 			    
@@ -50,14 +49,13 @@ public class ContaDAO {
 	            pstmt.setString(3, data);
 	            pstmt.executeUpdate();
 	            System.out.println("Cofre inserido com sucesso!");
-		} catch (SQLException e) {
+		} catch (SQLException | URISyntaxException e) {
             System.out.println("Erro ao inserir cofre: " + e.getMessage());
         }			
 	}
 	
 	public void updateSaldo(Contas conta) {
         String sql = "UPDATE contas SET saldo = ? WHERE id = ?";
-
         try (Connection conn = Conn.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
@@ -65,7 +63,7 @@ public class ContaDAO {
             pstmt.setInt(2, conta.getId());
             pstmt.executeUpdate();
             
-        } catch (SQLException e) {
+        } catch (SQLException | URISyntaxException e) {
             System.out.println("Erro ao atualizar: " + e.getMessage());
         }
     }
@@ -79,7 +77,7 @@ public class ContaDAO {
 	        stmt.setInt(1, id);
 	        stmt.executeUpdate();
 	        
-	    } catch (SQLException e) {
+	    } catch (SQLException | URISyntaxException e) {
 	        e.printStackTrace();
 	    }
 	}
@@ -92,7 +90,7 @@ public class ContaDAO {
 			
 				stmt.executeUpdate(sql);
 				
-				} catch (SQLException e) {
+				} catch (SQLException | URISyntaxException e) {
 					
 					e.printStackTrace();
 				}
