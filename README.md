@@ -27,6 +27,7 @@ Desenvolvido como projeto pessoal para aprendizado de **JAVA** , **JavaFX** e in
 - Java 26
 - JavaFX 26
 - SQLite
+- CSS
 
 ## Funcionalidades
 - Criar e excluir cofres
