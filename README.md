@@ -16,11 +16,6 @@ Desenvolvido como projeto pessoal para aprendizado de **JAVA** e **JavaFX**.
 - Visualização de saldo com toggle de privacidade
 - Controle de meta e percentual atingido
 - Persistência em banco de dados
-- Tela de últimas transações
-
-### Em andamento
+- Histórico completo
 - Ajustes de interface
 
-### Planejado
-- Tela de configurações
-- Histórico completo
