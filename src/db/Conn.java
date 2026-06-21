@@ -49,7 +49,7 @@ public class Conn {
                 "ALTER TABLE transacoes ADD COLUMN data TEXT DEFAULT ''"
             );
         } catch (SQLException e) {
-            // coluna já existe, ignora
+         
         }
     }
 }
