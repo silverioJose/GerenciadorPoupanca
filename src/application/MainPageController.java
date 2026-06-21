@@ -70,7 +70,7 @@ public class MainPageController {
     private String operacaoAtual;
     private TransacaoDAO transacaoDAO = new TransacaoDAO();
 
-    // esse metodo roda automatico quando a tela abre
+    //roda automatico ao abrir
     @FXML
     public void initialize() {
         listaContas = dao.listAll();
