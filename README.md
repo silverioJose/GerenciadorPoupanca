@@ -6,7 +6,13 @@ Permite criar, visualizar e excluir cofres, além de realizar depósitos e saque
 
 Desenvolvido como projeto pessoal para aprendizado de **JAVA** , **JavaFX** e integração com **Banco de Dados Relacional**. 
 
----
+<img
+  width="800"
+  height="450"
+  alt="Pagina Principal"
+  src="https://github.com/user-attachments/assets/799c152c-29e3-4b43-8ef1-e3c62aab7302"
+/>
+
 
 ## Como executar
 
