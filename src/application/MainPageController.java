@@ -60,7 +60,7 @@ public class MainPageController {
     @FXML private javafx.scene.layout.VBox vboxExclusao;
     @FXML private javafx.scene.layout.VBox vboxExclusaoTodos;
     @FXML private javafx.scene.layout.VBox vboxHistorico;
-    @FXML private javafx.scene.layout.VBox vboxCard;
+    @FXML private AnchorPane areaSlide;
 
     private ArrayList<Contas> listaContas;
     private int indiceAtual = 0;
@@ -74,6 +74,7 @@ public class MainPageController {
     @FXML
     public void initialize() {
         listaContas = dao.listAll();
+        
         
         
         if (!listaContas.isEmpty()) {
@@ -136,7 +137,7 @@ public class MainPageController {
     //direita
     @FXML
     public void proximaConta() {
-    	Animacao.slide(vboxCard, true, () -> {
+    	Animacao.slide(areaSlide, true, () -> {
     		indiceAtual++;
         	if (indiceAtual >= listaContas.size()) indiceAtual = 0;
         	atualizarTela();
@@ -147,7 +148,7 @@ public class MainPageController {
     //esquerda
     @FXML
     public void contaAnterior() {
-    	Animacao.slide(vboxCard, false, () -> {
+    	Animacao.slide(areaSlide, false, () -> {
     		indiceAtual--;
     		if (indiceAtual < 0) indiceAtual = listaContas.size() - 1;
     		atualizarTela();

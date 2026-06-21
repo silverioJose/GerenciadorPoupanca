@@ -47,7 +47,7 @@ public class Animacao {
 		
 	}
 	
-	public static void slide(VBox card, boolean paraDireita, Runnable aoTerminar) {
+	public static void slide(Node card, boolean paraDireita, Runnable aoTerminar) {
 		double largura = 400;
 		double direcao = paraDireita ? largura : -largura;
 		
