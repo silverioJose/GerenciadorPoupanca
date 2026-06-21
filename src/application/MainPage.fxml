@@ -61,7 +61,7 @@
                            </children>
                         </HBox>
                         <Separator prefWidth="200.0" />
-                        <Label fx:id="labelDescName" maxWidth="Infinity" style="-fx-text-fill: beige;" text="Descrição">
+                        <Label fx:id="labelDescName" maxWidth="Infinity" style="-fx-text-fill: beige;" text="Descrição" visible="false">
                            <font><Font size="26.0" /></font>
                         </Label>
                         <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
